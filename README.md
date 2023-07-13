@@ -95,7 +95,10 @@ To run the project, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- Authentication
+- Validations and Model specs.
+- Processing data in models.
+- Setup and controllers.
+- Add authorization rules
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
