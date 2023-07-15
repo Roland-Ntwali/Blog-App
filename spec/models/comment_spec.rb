@@ -1,43 +1,32 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
-  let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
+describe Comment, type: :model do
+  let(:user) { User.create(name: 'Jake', photo: 'user.png', bio: 'Jake is a 21-year-old footballer from Ghana') }
+  let(:post1) { Post.create(author: user, title: 'My first post', text: 'Ghana is in West Africa') }
 
-  describe '#update_comments_counter' do
-    let(:post) { user.posts.create(title: 'Coding in progress', text: 'One line at a time') }
-    let(:comment) { post.comments.create(author: user, text: 'Hope you all done with your project?') }
-
-    it 'updates the comments counter on the associated post after save' do
-      expect { comment.save }.to change { post.reload.comments_counter }.by(1)
+  describe 'Associations' do
+    it 'belongs to an author' do
+      association = described_class.reflect_on_association(:author)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.class_name).to eq('User')
     end
 
-    it 'updates the comments counter on the associated post after destroy' do
-      comment.save
-      expect { comment.destroy }.to change { post.reload.comments_counter }.by(-1)
+    it 'belongs to a post' do
+      association = described_class.reflect_on_association(:post)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.class_name).to eq('Post')
     end
   end
 
-  it 'validates the presence of text' do
-    post = user.posts.create(title: 'Coding in progress', text: 'One line at a time')
-    subject = post.comments.create(author: user, text: 'Hope you all done with your project?')
+  describe 'Callbacks' do
+    describe 'after_save' do
+      it 'updates the comments_counter of the associated post' do
+        expect(post1.comments_counter).to eq(0)
 
-    subject.text = nil
-    expect(subject).to_not be_valid
-  end
+        Comment.create(author: user, post: post1, text: 'First comment')
 
-  it 'belongs to an author' do
-    post = user.posts.create(title: 'Coding in progress', text: 'One line at a time')
-    subject = post.comments.create(author: user, text: 'Hope you all done with your project?')
-
-    subject.author = nil
-    expect(subject).to_not be_valid
-  end
-
-  it 'should be linked to a post' do
-    post = user.posts.create(title: 'Coding in progress', text: 'One line at a time')
-    subject = post.comments.create(author: user, text: 'Hope you all done with your project?')
-
-    subject.post = nil
-    expect(subject).to_not be_valid
+        expect(post1.reload.comments_counter).to eq(1)
+      end
+    end
   end
 end

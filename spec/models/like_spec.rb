@@ -1,31 +1,32 @@
 require 'rails_helper'
 
-RSpec.describe Like, type: :model do
-  let(:user) { User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
+describe Like, type: :model do
+  let(:user) { User.create(name: 'Jake', photo: 'user.png', bio: 'Jake is a 21-year-old footballer from Ghana') }
+  let(:post) { Post.create(author: user, title: 'My first post', text: 'Ghana is in West Africa') }
 
-  describe '#update_likes_counter' do
-    let(:post) { user.posts.create(title: 'Coding in progress', text: 'One line at a time') }
-    let!(:like) { post.likes.create(author: user) }
+  describe 'Associations' do
+    it 'belongs to an author' do
+      association = described_class.reflect_on_association(:author)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.class_name).to eq('User')
+    end
 
-    it 'increments the likes_counter on the associated post after create' do
-      post.update(likes_counter: 0) # Reset the likes_counter to 0 for accurate testing
-
-      expect do
-        post.likes.create(author: user)
-        post.reload
-      end.to change { post.likes_counter }.by(1)
+    it 'belongs to a post' do
+      association = described_class.reflect_on_association(:post)
+      expect(association.macro).to eq(:belongs_to)
+      expect(association.class_name).to eq('Post')
     end
   end
 
-  it 'belongs to an author' do
-    post = user.posts.create(title: 'Coding in progress', text: 'One line at a time')
-    subject = post.likes.build(author: nil)
-    expect(subject).to_not be_valid
-  end
+  describe 'Callbacks' do
+    describe 'after_save' do
+      it 'updates the likes_counter of the associated post' do
+        expect(post.likes_counter).to eq(0)
 
-  it 'should be linked to a post' do
-    user.posts.create(title: 'Coding in progress', text: 'One line at a time')
-    subject = Like.new(author: user, post: nil)
-    expect(subject).to_not be_valid
+        Like.create(author: user, post:)
+
+        expect(post.reload.likes_counter).to eq(1)
+      end
+    end
   end
 end

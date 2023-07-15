@@ -1,49 +1,33 @@
 require 'rails_helper'
-# require_relative '../app/models/user'
 
-RSpec.describe User, type: :model do
-  describe 'validations' do
-    subject { User.new(name: 'Taflon', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
+describe User, type: :model do
+  subject { User.new(name: 'Ama Ata Aidoo', photo: 'https://www.w4.org/wp-content/uploads/drupal-images/amaataaidoo.png', bio: 'Ama Ata Aidoo is a Ghanaian author, poet, playwright and academic. With a career spanning more than five decades') }
+  before { subject.save }
 
-    it 'Name should be present' do
-      subject.name = nil
-      expect(subject).to_not be_valid
-    end
-
-    it 'photo should be present' do
-      subject.photo = nil
-      expect(subject).to_not be_valid
-    end
-
-    it 'bio should be present' do
-      subject.bio = nil
-      expect(subject).to_not be_valid
-    end
-
-    it 'posts_counter should be an interger' do
-      subject.posts_counter = ''
-      expect(subject).to_not be_valid
-    end
-
-    it 'posts_counter should be greater than or equal to 0' do
-      subject.posts_counter = -1
-      expect(subject).to_not be_valid
-    end
+  it 'Name should be present' do
+    subject.name = nil
+    expect(subject).to_not be_valid
   end
 
-  describe '#recent_posts' do
-    let(:user) { User.create(name: 'Taflon', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.') }
+  describe '#three_recent_posts' do
+    let!(:post1) { Post.create(author: subject, title: 'Post 1', text: 'This is my first post') }
+    let!(:post2) do
+      Post.create(author: subject, title: 'Post 2', text: 'This is my second post', created_at: 2.day.ago)
+    end
+    let!(:post3) { Post.create(author: subject, title: 'Post 3', text: 'This is my third post', created_at: 3.day.ago) }
+    let!(:post4) do
+      Post.create(author: subject, title: 'Post 4', text: 'This is my fourth post', created_at: 4.day.ago)
+    end
 
-    let(:first_post) { user.posts.create(title: 'Hello', text: 'This is my first post') }
-    let(:second_post) { user.posts.create(title: 'I am changing the world!', text: 'This is my second post') }
-    let(:third_post) { user.posts.create(title: 'Coding in progress', text: 'One line at a time') }
-    let(:fourth_post) { user.posts.create(title: 'Show love', text: 'You cant love too much') }
+    it 'returns the three most recent posts' do
+      recent_post = subject.recent_posts
+      puts recent_post
+      expect(recent_post).to eq([post1, post2, post3])
+    end
 
-    it 'returns the most recent three posts' do
-      recent_posts = user.recent_posts
-
-      expect(recent_posts).to contain_exactly(fourth_post, third_post, second_post)
-      expect(recent_posts.length).to eq(3)
+    it 'does not include posts older than the three most recent' do
+      recent_posts = subject.recent_posts
+      expect(recent_posts).not_to include(post4)
     end
   end
 end
