@@ -99,6 +99,8 @@ To run the project, execute the following command:
 - Processing data in models.
 - Setup and controllers.
 - Add authorization rules
+- Add controllers tests
+- Add views
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
