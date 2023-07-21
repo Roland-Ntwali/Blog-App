@@ -1,19 +1,18 @@
 <div class="main_container">
-
- <div class="post">
+  <div class="post">
     <ul class="post_info width"> 
-    <div class="header">
-    <h3 class="title"><%= @posts.title %> by <%= @user.name %></h3>
-    <li class="countcomentlikes">Comments:  <%= @posts.comments_counter %>, Likes: <%= @posts.likes_counter %> </li>
-    </div>
-   <li class="bio_content"> <%= @posts.text %> </li>
-   </ul>
-   <div class="post_comment">
-   <% @posts.comments.each do |comment| %>
+      <div class="header">
+        <h3 class="title"><%= @posts.title %> by <%= @user.name %></h3>
+        <li class="countcomentlikes">Comments: <%= @posts.comments_counter %>, Likes: <%= @posts.likes_counter %> </li>
+      </div>
+      <li class="bio_content"> <%= @posts.text %> </li>
+    </ul>
+    <div class="post_comment">
+      <% @posts.comments.each do |comment| %>
       <ul class="comments width"> 
-          <li> <%= comment.author.name %>: <%= comment.text%> </li>
-       </ul>
-
-    <% end %>
-   </div>
+        <li> <%= comment.author.name %>: <%= comment.text %> </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
 </div>

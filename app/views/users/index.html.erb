@@ -1,21 +1,21 @@
 <h1>Users</h1>
 <div class="main_container">
-<div class="profile">
-<div class="photos">
-  <% @users.each do |user| %>
-    <ul class="photo"> 
-   <li> <img src="<%= user.photo %>"> </li>
-   </ul>
-    <% end %>
-</div>
+  <div class="profile">
+    <div class="photos">
+      <% @users.each do |user| %>
+      <ul class="photo"> 
+        <li> <img src="<%= user.photo %>"> </li>
+      </ul>
+      <% end %>
+    </div>
 
-<div class="names_posts">
-  <% @users.each do |user| %>
-    <ul class="name_post"> 
-   <li class="list_name"> <%= user.name %> </li>
-   <li class="list_countpost">Number of post: <%= user.post_counter %> </li>
-   </ul>
-    <% end %>
-</div>
-</div>
+    <div class="names_posts">
+      <% @users.each do |user| %>
+      <ul class="name_post"> 
+        <li class="list_name"> <%= link_to user.name, user_path(user) %> </li>
+        <li class="list_countpost">Number of posts: <%= user.post_counter %> </li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
 </div>

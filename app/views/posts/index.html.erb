@@ -1,33 +1,33 @@
 <div class="main_container">
-    <div class="profile">
-        <div class="photos">
-            <ul class="photo"> 
-               <li> <img src="<%= @user.photo %>"> </li>
-            </ul>
-        </div>
-        <div class="names_posts">
-          <ul class="name_post"> 
-              <li class="list_name"> <%= @user.name %> </li>
-              <li class="list_countpost">Number of post: <%= @user.post_counter %> </li>
-           </ul>
-        </div>
+  <div class="profile">
+    <div class="photos">
+      <ul class="photo"> 
+        <li> <img src="<%= @user.photo %>"> </li>
+      </ul>
     </div>
+    <div class="names_posts">
+      <ul class="name_post"> 
+        <li class="list_name"> <%= @user.name %> </li>
+        <li class="list_countpost">Number of posts: <%= @user.post_counter %> </li>
+      </ul>
+    </div>
+  </div>
 
-    <div class="post">
-        <% @user.posts.each do |post| %>
-        <ul class="post_info width"> 
-            <h3 class="title"><%= post.title%> #<%= post.id%></h3>
-            <li class="bio_content"> <%= post.text %> </li>
-            <li class="list_countcomentlikes">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %> </li>
-        </ul>
-        <div class="post_comment">
-            <% post.recent_comments.each do |comment| %>
-                <ul class="comment width"> 
-                    <li> <%= comment.author.name %>: <%= comment.text%> </li>
-                </ul>
-            <% end %> 
-        </div>
-      <% end %>
+  <div class="post">
+    <% @user.posts.each do |post| %>
+    <ul class="post_info width"> 
+      <li class="title"><%= post.title %> #<%= post.id %></li>
+      <li class="bio_content"> <%= post.text %> </li>
+      <li class="list_countcomentlikes">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %> </li>
+    </ul>
+    <div class="post_comment">
+      <% post.recent_comments.each do |comment| %>
+      <ul class="comment width"> 
+        <li> <%= comment.author.name %>: <%= comment.text %> </li>
+      </ul>
+      <% end %> 
     </div>
-  <button type:submit class="all-posts">Pagination</button>
+    <% end %>
+  </div>
+  <button type="submit" class="all-posts">Pagination</button>
 </div>
