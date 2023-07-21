@@ -1,18 +1,27 @@
 <div class="main_container">
-  <div class="post">
+
+ <div class="post">
     <ul class="post_info width"> 
-      <div class="header">
-        <li class="title"><%= @posts.title %> by <%= @user.name %></li>
-        <li class="countcomentlikes">Comments: <%= @posts.comments_counter %>, Likes: <%= @posts.likes_counter %> </li>
-      </div>
-      <li class="bio_content"> <%= @posts.text %> </li>
-    </ul>
-    <div class="post_comment">
-      <% @posts.comments.each do |comment| %>
-      <ul class="comments width"> 
-        <li> <%= comment.author.name %>: <%= comment.text %> </li>
-      </ul>
+    <div class="header">
+    <h3 class="title"><%= @posts.title %> #<%= @posts.id%> by <%= @user.name %></h3>
+    <li class="countcomentlikes">Comments:  <%= @posts.comments_counter %>, Likes: <%= @posts.likes_counter %> </li>
+    </div>
+   <li class="bio_content"> <%= @posts.text %> </li>
+   </ul>
+    <button class="page-btn">
+        <%= link_to 'Add New Comment', new_user_post_comment_path(@posts.author, @posts), style: 'color: white; text-decoration: none;' %>
+    </button>
+    <div class="general-btn">
+      <%= form_with model: Like, url: user_post_likes_path(@posts.author, @posts) do |form| %>
+        <%= form.submit 'Like Post' %>
       <% end %>
     </div>
-  </div>
+   <div class="post_comment">
+   <% @posts.comments.each do |comment| %>
+      <ul class="comments width"> 
+          <li> <%= comment.author.name %>: <%= comment.text%> </li>
+       </ul>
+
+    <% end %>
+   </div>
 </div>
