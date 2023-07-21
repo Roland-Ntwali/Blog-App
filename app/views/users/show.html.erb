@@ -19,11 +19,13 @@
     </ul>
   </div>
   <div class="post">
+  <% @users.recent_posts.each do |post| %>
     <ul class="post_info width"> 
-      <li class="title"><%= @posts.title %> #<%= @posts.id %></li>
-      <li class="bio_content"> <%= @posts.text %> </li>
-      <li class="list_countcomentlikes">Comments: <%= @posts.comments_counter %>, Likes: <%= @posts.likes_counter %> </li>
-    </ul>
-    <button class="allcoment"> <%= link_to 'See all Posts', user_posts_path(@users) %> </button>
-  </div>
+    <h3 class="title"><%= link_to post.title, user_post_path(@users, post), style: 'color: #2b9deef1; text-decoration: none;' %> #<%= post.id%></h3>
+   <li class="bio_content"> <%= post.text %> </li>
+   <li class="list_countcomentlikes">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %> </li>
+   </ul>
+   <% end %>
+</div>
+<button class="allcoment"> <%= link_to 'See all Post', user_posts_path(@users), style: 'color: white; text-decoration: none;' %> </button>
 </div>
