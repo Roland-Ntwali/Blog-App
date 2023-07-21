@@ -1,0 +1,6 @@
+<h1>Add Comment</h1>
+
+<%= form_with model: @comment, url: user_post_comments_path, method: :post, local: true, scope: :comment do |form| %>
+  <%= form.text_area :text, placeholder: "Enter your comment" %>
+  <%= form.submit "Comment" %>
+<% end %>
