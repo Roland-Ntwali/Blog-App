@@ -22,7 +22,7 @@
     <div class="post">
         <% @user.posts.each do |post| %>
         <ul class="post_info width"> 
-            <h3 class="title"><%= link_to post.title, user_post_path(@user, post), style: 'color: #2b9deef1; text-decoration: none;'%> #<%= post.id%></h3>
+            <li class="title"><%= link_to post.title, user_post_path(@user, post), style: 'color: #2b9deef1; text-decoration: none;'%> #<%= post.id%></li>
             <li class="bio_content"> <%= post.text %> </li>
             <li class="list_countcomentlikes">Comments: <%= post.comments_counter %>, Likes: <%= post.likes_counter %> </li>
         </ul>
