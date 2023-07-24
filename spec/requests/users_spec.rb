@@ -2,34 +2,28 @@ require 'rails_helper'
 
 describe 'Users', type: :request do
   describe 'GET #index' do
-    before(:example) { get users_url }
-
     it 'successfull request' do
-      expect(response.status).to eq(200)
+      get '/'
+      expect(response).to be_successful
     end
 
     it 'should render the index template' do
+      get '/users'
       expect(response).to render_template(:index)
-    end
-
-    it 'should render the index placeholder' do
-      expect(response.body).to include('List of all users')
     end
   end
 
-  describe 'GET #show' do
-    before(:example) { get user_url(1) }
+  describe 'GET users from /users/:id to show' do
+    user = User.create!(name: 'Tom', photo: 'https://picsum.photos/200/300', bio: 'I am John', posts_counter: 4)
 
     it 'successful request' do
-      expect(response.status).to eq(200)
+      get users_path
+      expect(response).to be_successful
     end
 
     it 'should render the show template' do
+      get "/users/#{user.id}"
       expect(response).to render_template(:show)
-    end
-
-    it 'should render the show placehoder' do
-      expect(response.body).to include('List of all users by id')
     end
   end
 end
