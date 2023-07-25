@@ -14,7 +14,7 @@ describe 'Users', type: :request do
   end
 
   describe 'GET users from /users/:id to show' do
-    user = User.create!(name: 'Tom', photo: 'https://picsum.photos/200/300', bio: 'I am John', posts_counter: 4)
+    user = User.create!(name: 'Tom', photo: 'https://picsum.photos/200/300', bio: 'I am John', post_counter: 4)
 
     it 'successful request' do
       get users_path

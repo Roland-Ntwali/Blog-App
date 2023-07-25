@@ -20,7 +20,7 @@ describe 'Posts', type: :request do
   end
 
   describe 'GET users from /users/:id to show' do
-    user = User.create!(name: 'Burak', photo: 'https://picsum.photos/200/300', bio: 'I am Burak', posts_counter: 4)
+    user = User.create!(name: 'Burak', photo: 'https://picsum.photos/200/300', bio: 'I am Burak', post_counter: 4)
     post = Post.create!(author: user, title: 'title', text: ' Post text 1', comments_counter: 0, likes_counter: 0)
 
     it 'successful request' do
