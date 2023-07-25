@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe User, type: :system do
-  subject { User.new(name: 'John', posts_counter: 3, photo: 'https://pic.com', bio: 'Project Owner') }
+  subject { User.new(name: 'John', post_counter: 3, photo: 'https://pic.com', bio: 'Project Owner') }
   before { subject.save }
   describe 'User show page' do
     it "I can see the user's profile picture." do
@@ -13,7 +13,7 @@ RSpec.describe User, type: :system do
     end
     it 'I can see the number of posts the user has written.' do
       visit user_path(subject.id)
-      expect(page).to have_content(subject.posts_counter)
+      expect(page).to have_content(subject.post_counter)
     end
     it "I can see the user's bio." do
       visit user_path(subject.id)

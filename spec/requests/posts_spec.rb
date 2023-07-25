@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Posts', type: :request do
   before(:each) do
     user = User.create!(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
-                        posts_counter: 1)
+                        post_counter: 1)
     get "/users/#{user.id}/posts"
   end
 
