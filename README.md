@@ -52,12 +52,9 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<ul>
-    <li><a href="https://code.visualstudio.com/">Code editor e.g VS code</a></li>
-    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
-      <li><a href="https://rubyonrails.org/">Rails</a></li>
-    <li><a href="https://www.postgresql.org/">PostgreSql</a></li>
-  </ul>
+- Command line or terminal
+- IDE such as VsCode.
+- Rails needs to be installed on your system.
 
 ### Setup
 
@@ -93,14 +90,15 @@ To run the project, execute the following command:
 - GitHub: [Roland-Ntwali](https://github.com/Roland-Ntwali)
 - LinkedIn: [roland-ntwali](https://www.linkedin.com/in/roland-ntwali/)
 
+
+👤 **Roland Ntwali**
+
+- GitHub: [Hasnat Ali](https://github.com/hasnatali1947)
+- LinkedIn: [Hasnat Ali](https://www.linkedin.com/in/hasnat-ali-4052b025a/)
+  
 ## 🔭 Future Features <a name="future-features"></a>
 
 - Validations and Model specs.
-- Processing data in models.
-- Setup and controllers.
-- Add authorization rules
-- Add controllers tests
-- Add views
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
