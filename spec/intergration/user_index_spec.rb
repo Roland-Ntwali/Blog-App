@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe User, type: :system do
+RSpec.describe User, type: :feature do
   subject { User.new(name: 'Tom', post_counter: 3, photo: 'https://pic.com', bio: 'Project manager') }
   before { subject.save }
   describe 'index page' do
