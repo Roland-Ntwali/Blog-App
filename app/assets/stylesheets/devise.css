@@ -71,13 +71,15 @@ textarea {
   color: green;
   background-color: #d2ffd2;
 }
-.actions{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 100px;
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
 }
+
 /* Links */
 .actions a {
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 10px;
 }
