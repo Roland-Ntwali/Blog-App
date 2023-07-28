@@ -19,10 +19,18 @@ h3 {
   background-color: #f5f5f5;
 }
 
+.new_user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Form Fields */
 .field {
   margin-bottom: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
@@ -35,7 +43,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"],
 textarea {
-  width: 65%;
+  width: 500px;
   padding: 8px;
   margin-bottom: 5px;
   border: 3px solid black;
@@ -46,12 +54,12 @@ textarea {
 /* Form Submit Button */
 .actions input[type="submit"] {
   display: block;
-  width: 65%;
   padding: 10px;
   background-color: white;
   color: black;
   border: 3px solid #000;
   cursor: pointer;
+  width: 522px;
 }
 
 /* Error and Success Messages */
