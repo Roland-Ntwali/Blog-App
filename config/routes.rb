@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root to: "users#index"
+  devise_scope :user do
+    get 'logout', to: 'session#destroy', as: :logout
+  end
+  
+  devise_for :users
+  root to: "users#index", controllers: { session: 'session' }
 
   resources :users do
     resources :posts do
