@@ -91,7 +91,7 @@ To run the project, execute the following command:
 - LinkedIn: [roland-ntwali](https://www.linkedin.com/in/roland-ntwali/)
 
 
-👤 **Roland Ntwali**
+👤 **Hasnat Ali**
 
 - GitHub: [Hasnat Ali](https://github.com/hasnatali1947)
 - LinkedIn: [Hasnat Ali](https://www.linkedin.com/in/hasnat-ali-4052b025a/)
